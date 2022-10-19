@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SLIIT/4th YEAR/2nd SEMESTER/(2) Enterprise Application Development - SE4040/(00) Assignments/FuelApp_RestAPI_Android/app/src/main/res/drawable/button.xml" value="0.143" />
+        <entry key="..\:/SLIIT/4th YEAR/2nd SEMESTER/(2) Enterprise Application Development - SE4040/(00) Assignments/FuelApp_RestAPI_Android/app/src/main/res/drawable/rounded_background.xml" value="0.143" />
         <entry key="..\:/SLIIT/4th YEAR/2nd SEMESTER/(2) Enterprise Application Development - SE4040/(00) Assignments/FuelApp_RestAPI_Android/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/SLIIT/4th YEAR/2nd SEMESTER/(2) Enterprise Application Development - SE4040/(00) Assignments/FuelApp_RestAPI_Android/app/src/main/res/layout/activity_modcat.xml" value="0.209375" />
         <entry key="..\:/SLIIT/4th YEAR/2nd SEMESTER/(2) Enterprise Application Development - SE4040/(00) Assignments/FuelApp_RestAPI_Android/app/src/main/res/layout/category_list.xml" value="0.22" />
       </map>
     </option>
