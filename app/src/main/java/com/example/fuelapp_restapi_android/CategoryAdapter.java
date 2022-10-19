@@ -50,17 +50,60 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder,final int position) {
         holder.title.setText(category.get(position).getCategory());
         holder.no.setText("#" + String.valueOf(position+1));
         holder.editCat.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 int id = category.get(position).getId();
                 String value = category.get(position).getCategory();
                 editCategory(id, value);
             }
         });
+        holder.deleteCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = category.get(position).getId();
+                deleteCategory(id);
+            }
+        });
+    }
+
+    private void deleteCategory(final int id) {
+        TextView close, judul;
+        EditText cat;
+        Button submit;
+        final Dialog dialog;
+
+        dialog = new Dialog(context);
+
+        dialog.setContentView(R.layout.delete_cat);
+
+        close = (TextView) dialog.findViewById(R.id.txtClose);
+        judul = (TextView) dialog.findViewById(R.id.judul);
+
+        judul.setText("Delete category");
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        submit = (Button) dialog.findViewById(R.id.submit);
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Submit("DELETE", "", dialog, id);
+            }
+        });
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
 
@@ -106,7 +149,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     private void Submit(String method,final String data, final Dialog dialog, final int id) {
         if(method == "PUT") {
-            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     dialog.dismiss();
@@ -127,6 +170,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                     return params;
                 }
             };
+            Volley.newRequestQueue(context).add(request);
+        } else if (method == "DELETE"){
+            StringRequest request = new StringRequest(Request.Method.DELETE, url + id, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Data Deleted Successfully", Toast.LENGTH_LONG).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context, "Data Deleted Failed", Toast.LENGTH_LONG).show();
+                }
+            });
             Volley.newRequestQueue(context).add(request);
         }
     }
