@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         dialog.show();
     }
 
-    private void Submit(String data) {
+    private void Submit(final String data) {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Data Retrieve Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Data Retrieve Failed", Toast.LENGTH_LONG).show();
             }
         }){
             @Nullable
